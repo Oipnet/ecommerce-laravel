@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Size extends Model
 {
-    use HasFactory;
-
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
