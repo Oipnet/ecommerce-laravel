@@ -31,5 +31,6 @@ Route::get('/produit/{product:slug}', [ProductController::class, 'show'])->name(
 Route::prefix('admin')
     ->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin_index');
-        Route::get('/taille/{size}/editer', [AdminSizeController::class, 'edit'])->name('admin_size_edit');
+        Route::get('/taille/{size:code}/editer', [AdminSizeController::class, 'edit'])->name('admin_size_edit');
+        Route::put('/taille/{size:code}', [AdminSizeController::class, 'update'])->name('admin_size_update');
     });
