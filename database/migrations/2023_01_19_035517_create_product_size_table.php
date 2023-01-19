@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('size_id')->constrained();
             $table->primary(['product_id', 'size_id']);
             $table->integer('stock')->unsigned();
-            $table->timestamps();
         });
     }
 
