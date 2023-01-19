@@ -31,7 +31,17 @@ class Product extends Model
     protected function formattedPrice(): Attribute
     {
         return Attribute::make(
-            get: fn($value, $attributes) => $attributes['price_in_cents'] / 100,
+            get: fn($value, $attributes) => number_format($attributes['price_in_cents'] / 100, 2). ' €',
         );
+    }
+
+    protected function getCountReviewAttribute()
+    {
+        return $this->reviews()->count();
+    }
+
+    protected function getAvgReviewAttribute()
+    {
+        return round($this->reviews()->avg('note'), 2);
     }
 }

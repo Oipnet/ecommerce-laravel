@@ -25,21 +25,15 @@
                         </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
-                        <tr>
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">S</td>
-                            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">Small</td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                                <a href="{{ route('admin_size_edit', ['size' => 'small']) }}" class="text-indigo-600 hover:text-indigo-900">Editer<span class="sr-only">, Small</span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">M</td>
-                            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">Medium</td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                                <a href="{{ route('admin_size_edit', ['size' => 'medium']) }}" class="text-indigo-600 hover:text-indigo-900">Editer<span class="sr-only">, Medium</span></a>
-                            </td>
-                        </tr>
-
+                        @foreach($sizes as $size)
+                            <tr>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">{{ $size->code }}</td>
+                                <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $size->libelle }}</td>
+                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+                                    <a href="{{ route('admin_size_edit', ['size' => $size->code]) }}" class="text-indigo-600 hover:text-indigo-900">Editer<span class="sr-only">, {{ $size->libelle }}</span></a>
+                                </td>
+                            </tr>
+                        @endforeach
                         <!-- More people... -->
                         </tbody>
                     </table>
@@ -71,20 +65,15 @@
                         </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
-                        <tr>
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">Tee-shirt</td>
-                            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">tee-shirt</td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Editer<span class="sr-only">, Tee-shirt</span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">Pantalon</td>
-                            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">pantalon</td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Editer<span class="sr-only">, Pantalon</span></a>
-                            </td>
-                        </tr>
+                        @foreach($categories as $category)
+                            <tr>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">{{ $category->libelle }}</td>
+                                <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $category->slug }}</td>
+                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Editer<span class="sr-only">, {{ $category->libelle }}</span></a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -116,14 +105,16 @@
                         </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
-                        <tr>
-                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">Tee-shirt Basique</td>
-                            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">Le tee-shirt Basic est une nouvelle...</td>
-                            <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">35 €</td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Editer<span class="sr-only">, Tee-shirt Basique</span></a>
-                            </td>
-                        </tr>
+                        @foreach($products as $product)
+                            <tr>
+                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">{{ $product->title }}</td>
+                                <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ \Illuminate\Support\Str::words($product->description, 5) }}</td>
+                                <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $product->formattedPrice }}</td>
+                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 md:pr-0">
+                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Editer<span class="sr-only">, {{ $product->title }}</span></a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

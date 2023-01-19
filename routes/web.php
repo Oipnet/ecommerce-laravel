@@ -24,9 +24,9 @@ Route::get('/login', [SecurityController::class, 'login'])->name('login');
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('category_index');
-Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category_show');
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('category_show');
 
-Route::get('/produit/{produit}', [ProductController::class, 'show'])->name('product_show');
+Route::get('/produit/{product:slug}', [ProductController::class, 'show'])->name('product_show');
 
 Route::prefix('admin')
     ->group(function () {
