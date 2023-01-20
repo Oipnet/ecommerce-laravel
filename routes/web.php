@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [SecurityController::class, 'login'])->name('login');
 Route::post('/login', [SecurityController::class, 'authenticate'])->name('login_authenticate');
-Route::post('/logout', [SecurityController::class, 'logout'])->name('login_logout');
+Route::delete('/logout', [SecurityController::class, 'logout'])->name('login_logout');
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 

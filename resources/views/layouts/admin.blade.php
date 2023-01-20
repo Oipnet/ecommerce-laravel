@@ -11,6 +11,7 @@
 <body>
 <nav>
     <form id="form-logout" action="{{ route('login_logout') }}" method="post">
+        @method('DELETE')
         @csrf
     </form>
     <a href="" id="logout">Se deconnecter</a>
