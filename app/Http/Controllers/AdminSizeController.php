@@ -18,6 +18,8 @@ class AdminSizeController extends Controller
     public function update(EditSizeRequest $editSizeRequest, Size $size) {
         $validatedRequest = $editSizeRequest->validated();
 
-        dd($validatedRequest);
+        $size->update($validatedRequest);
+
+        return redirect()->route('admin_index')->with('success', 'La taille a bien été mis à jour');
     }
 }

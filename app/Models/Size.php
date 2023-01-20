@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Size extends Model
 {
+    protected $fillable = ['code', 'libelle'];
+
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);

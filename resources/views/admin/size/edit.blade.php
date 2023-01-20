@@ -4,6 +4,7 @@
     <form action="{{ route('admin_size_update', ['size' => $size->code]) }}" class="container mx-auto" method="POST">
         @method('PUT')
         @csrf
+        <input type="hidden" name="id" id="id" value="{{ old('id', $size->id) }}">
         <label for="code" class="block text-sm font-medium text-gray-700">Code</label>
         <div class="relative mt-1 rounded-md shadow-sm">
             <input type="text" name="code" id="code"
