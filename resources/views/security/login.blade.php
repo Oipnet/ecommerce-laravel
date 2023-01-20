@@ -7,7 +7,11 @@
             <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
             <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Se connecter</h2>
         </div>
-        <form class="mt-8 space-y-6" action="#" method="POST">
+        @if(request()->session()->get('errors'))
+            <p>{{ request()->session()->get('errors')->get('email')[0] }}</p>
+        @endif
+        <form class="mt-8 space-y-6" action="{{ route('login_authenticate') }}" method="POST">
+            @csrf
             <input type="hidden" name="remember" value="true">
             <div class="-space-y-px rounded-md shadow-sm">
                 <div>

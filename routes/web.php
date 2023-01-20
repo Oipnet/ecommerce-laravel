@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/login', [SecurityController::class, 'login'])->name('login');
+Route::post('/login', [SecurityController::class, 'authenticate'])->name('login_authenticate');
+Route::post('/logout', [SecurityController::class, 'logout'])->name('login_logout');
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
@@ -29,6 +31,7 @@ Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->
 Route::get('/produit/{product:slug}', [ProductController::class, 'show'])->name('product_show');
 
 Route::prefix('admin')
+    ->middleware('auth')
     ->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin_index');
         Route::get('/taille/{size:code}/editer', [AdminSizeController::class, 'edit'])->name('admin_size_edit');
