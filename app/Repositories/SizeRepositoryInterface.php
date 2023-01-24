@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 interface SizeRepositoryInterface
 {
     public function getAll(): Collection;
+
+    public function findByCode(string $code);
+
+    public function create(array $validatedData);
 }
