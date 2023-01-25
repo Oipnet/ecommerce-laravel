@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Models\Product;
+
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
 
@@ -22,5 +24,14 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         $this->model->save();
         $this->model->sizes()->sync($sizeIds);
+    }
+
+    public function findProductWithStockLessThan(int $limit)
+    {
+        $products = $this->model->all();
+
+        return $products->filter(function (Product $product) use ($limit) {
+            return $product->sizes()->where('stock', '<', $limit)->count() > 0;
+        });
     }
 }
